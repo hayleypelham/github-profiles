@@ -1,14 +1,23 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+import Button from 'react-bootstrap/Button'
 
 const Search = () => {
     return (
-        <main>
-            <section className="mt-5 h-100 d-flex justify-content-center">
-                <label htmlFor="usernameSearch"><h2>Search</h2></label>
-                <input id="usernameSearch" type="text"></input>
-                <button>Go</button>
-            </section>
-        </main> 
+        <section id="searchSection" className="mt-5 d-flex align-items-center justify-content-center">
+            <InputGroup size="lg" className="mb-3">
+                <InputGroup.Text id="username">https://github.com/</InputGroup.Text>
+                <FormControl
+                placeholder="Username"
+                aria-label="Username"
+                aria-describedby="username"
+                autoFocus="true"
+                />
+                <Button variant="secondary" id="submit">
+                    Button
+                </Button>
+            </InputGroup>
+        </section>
     );
 }
 
