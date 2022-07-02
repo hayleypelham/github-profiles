@@ -5,10 +5,28 @@ import Button from 'react-bootstrap/Button';
 
 const Result = ({username}) => {
     const [githubUser, setGithubUser] = useState({});
+    const [githubRepos, setGithubRepos] = useState([]);
+    let userNotFound = false;
 
     async function getGithubUser (username) {
-        const data = await fetch(`https://api.github.com/users/${username}`);
-        data.json().then((response) => setGithubUser(response));
+        try {
+            const data = await fetch(`https://api.github.com/users/${username}`);
+            if (!data.ok) {
+                userNotFound = true;
+            }
+            data.json().then((response) => setGithubUser(response));
+            const repoData = await fetch(`https://api.github.com/users/${username}/repos?sort=created&direction=desc`);
+            repoData.json().then((response) => { 
+                try {
+                    setGithubRepos(response.slice(0,4));
+                } catch (err) {
+                    userNotFound = true;
+                }
+            });
+        } catch (err) {
+            userNotFound = true;
+        }
+        if (userNotFound) alert("No user found for that username");
     }
 
     useEffect( () => {
@@ -23,10 +41,14 @@ const Result = ({username}) => {
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                                <Card.Title><strong>{username}</strong></Card.Title>
+                                <Card.Title><h3><strong>{username}</strong></h3></Card.Title>
                                 <ul className="mt-3">
                                     <li><b>Followers</b> {githubUser.followers}</li>
                                     <li><b>Repositories</b> {githubUser.public_repos}</li>
+                                </ul>
+                                <h4>Most recent repos</h4>
+                                <ul>
+                                    <li></li>
                                 </ul>
                             </div>
                             <Card.Img id="avatar" className="col" src={githubUser.avatar_url} />
