@@ -19,3 +19,14 @@ h1 {
     width: 544px;
     max-width: 80%;
 }
+#result li {
+    list-style: none;
+}
+
+#avatar {
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 200px;
+}
