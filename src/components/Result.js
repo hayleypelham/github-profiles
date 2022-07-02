@@ -20,16 +20,16 @@ const Result = ({username}) => {
             <Card bg="light" text="dark" id="result">
                 <Card.Header><h2>Profile</h2></Card.Header>
                 <Card.Body>
-                    <Card.Title>{username}</Card.Title>
-                    <div class="container">
-                        <div class="row">
-                            <Card.Text class="col">
-                                <ul>
-                                    <li>Followers: {githubUser.followers}</li>
-                                    <li>Repositories: {githubUser.public_repos}</li>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col">
+                                <Card.Title><strong>{username}</strong></Card.Title>
+                                <ul className="mt-3">
+                                    <li><b>Followers</b> {githubUser.followers}</li>
+                                    <li><b>Repositories</b> {githubUser.public_repos}</li>
                                 </ul>
-                            </Card.Text>
-                            <Card.Img class="col" src={githubUser.avatar_url} />
+                            </div>
+                            <Card.Img id="avatar" className="col" src={githubUser.avatar_url} />
                         </div>
                     </div>
                     <Button href={githubUser.html_url} variant="secondary">Visit profile</Button>
