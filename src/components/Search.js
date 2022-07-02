@@ -15,23 +15,27 @@ const Search = () => {
       }      
   
     return (
-        <section id="searchSection" className="mt-5 d-flex align-items-center justify-content-center">
-            <form onSubmit={handleSubmit}>
-                <InputGroup size="lg" className="mb-3">
-                    <InputGroup.Text id="username">https://github.com/</InputGroup.Text>
-                    <FormControl
-                        placeholder="Username"
-                        aria-label="Username"
-                        autoFocus={true}
-                        value={username} 
-                        onChange={(event) => setUsername(event.target.value)}
-                        required={true}
-                    />
-                    <Button variant="primary" type="submit" value="Submit">Go</Button>
-                </InputGroup>
-            </form>
-            {result.element}
-        </section>
+        <>
+            <section id="searchSection" className="mt-5 d-flex align-items-center justify-content-center">
+                <form onSubmit={handleSubmit}>
+                    <InputGroup size="lg" className="mb-3">
+                        <InputGroup.Text id="username">https://github.com/</InputGroup.Text>
+                        <FormControl
+                            placeholder="Username"
+                            aria-label="Username"
+                            autoFocus={true}
+                            value={username} 
+                            onChange={(event) => setUsername(event.target.value)}
+                            required={true}
+                        />
+                        <Button variant="primary" type="submit" value="Submit">Go</Button>
+                    </InputGroup>
+                </form>
+            </section>
+            <section id="resultsSection" class="mt-4 d-flex align-items-center justify-content-center">
+                {result.element}
+            </section>
+        </>
     )
   }
 
