@@ -9,20 +9,13 @@ h1 {
     color: white;
 }
 
-#searchSection, #resultsSection {
+#searchSection {
     margin: auto;
-    width: 600px;
-    min-width: 100px;
+    width: 580px;
     max-width: 80%;
-    padding: 0;
 }
 
 #result {
-    margin: auto;
-    width: 600px;
-    max-width: 90%;
-}
-
-.results {
-    color: white;
+    width: 544px;
+    max-width: 80%;
 }

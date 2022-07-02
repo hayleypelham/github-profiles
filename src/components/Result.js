@@ -20,14 +20,14 @@ const Result = ({username}) => {
     return (
         <section id="resultsSection" className="mt-4 d-flex align-items-center justify-content-center">
             <Card bg="light" text="dark" id="result">
-                <Card.Header>Result</Card.Header>
+                <Card.Header>Profile</Card.Header>
                 <Card.Body>
                     <Card.Title>{username}</Card.Title>
                     <Card.Text>
                         {username} <br />
                         {username}
                     </Card.Text>
-                    <Button variant="primary">Visit profile</Button>
+                    <Button variant="secondary">Visit profile</Button>
                 </Card.Body>
             </Card>
         </section>
