@@ -9,9 +9,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <>
-      <Header />
-      <Search />
-      <Result />
+      <main>
+        <Header />
+        <Search />
+        <Result />
+      </main>
     </>
   </React.StrictMode>
 );
