@@ -32,9 +32,7 @@ const Search = () => {
                     </InputGroup>
                 </form>
             </section>
-            <section id="resultsSection" class="mt-4 d-flex align-items-center justify-content-center">
-                {result.element}
-            </section>
+            {result.element}
         </>
     )
   }

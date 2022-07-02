@@ -13,7 +13,6 @@ root.render(
       <main>
         <Header />
         <Search />
-        <Result />
       </main>
     </>
   </React.StrictMode>
