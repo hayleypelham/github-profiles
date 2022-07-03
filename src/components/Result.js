@@ -59,11 +59,11 @@ const Result = ({username}) => {
                                     </ul>
                                     <h4>Most forked repos</h4>
                                     <ul>
-                                        { githubForkRepos.map(element => { return ( <li key={element.id}><b>{element.forks_count}</b> <a target="_blank" href={`https://github.com/${username}/${element.name}`}>{element.name}</a></li>)})}
+                                        { githubForkRepos.map(element => { return ( <li key={element.id}><b>{element.forks_count}</b> <a target="_blank" rel="noreferrer" href={`https://github.com/${username}/${element.name}`}>{element.name}</a></li>)})}
                                     </ul>
                                     <h4>Most starred repos</h4>
                                     <ul>
-                                        { githubStarRepos.map(element => { return ( <li key={element.id}><b>{element.stargazers_count}</b> <a target="_blank" href={`https://github.com/${username}/${element.name}`}>{element.name}</a></li>)})}
+                                        { githubStarRepos.map(element => { return ( <li key={element.id}><b>{element.stargazers_count}</b> <a target="_blank" rel="noreferrer" href={`https://github.com/${username}/${element.name}`}>{element.name}</a></li>)})}
                                     </ul>
                                 </div>
                                 <Card.Img id="avatar" className="col" src={githubUser.avatar_url} />
