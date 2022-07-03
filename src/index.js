@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+
+import './styles/index.scss';
 
 import Header from './components/Header';
 import Search from './components/Search';

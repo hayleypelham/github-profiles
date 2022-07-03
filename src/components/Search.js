@@ -16,7 +16,7 @@ const Search = () => {
   
     return (
         <>
-            <section id="searchSection" className="mt-5 d-flex align-items-center justify-content-center">
+            <section id="searchSection" className="m-auto mt-5 d-flex align-items-center justify-content-center">
                 <form onSubmit={handleSubmit} id="searchForm">
                     <InputGroup size="lg" className="mb-3">
                         <InputGroup.Text id="username">https://github.com/</InputGroup.Text>

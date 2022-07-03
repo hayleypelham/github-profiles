@@ -20,8 +20,7 @@ const Result = ({username}) => {
                     try {
                         setGithubForkRepos(response.items.slice(0,4));
                     } catch (err) {
-                        setUserFound(false);
-                        alert(err);
+                        alert("Something went wrong when fetching user data");
                     }
                 });
                 const repoStarData = await fetch(`https://api.github.com/search/repositories?q=user:${username}&sort=stars&order=desc`);
@@ -29,25 +28,22 @@ const Result = ({username}) => {
                     try {
                         setGithubStarRepos(response.items.slice(0,4));
                     } catch (err) {
-                        setUserFound(false);
-                        alert(err);
+                        alert("Something went wrong when fetching user data");
                     }
                 });
             } else {
                 setUserFound(false);
-                alert("No user found for that username");
             }
         } catch (err) {
             setUserFound(false);
-            alert("No user found for that username");
         }
         if ({userFound} === false) alert("No user found for that username");
     }
 
     const result = (githubUser) => {
         return (
-            <section id="resultsSection" className="mt-4 d-flex align-items-center justify-content-center">
-                <Card bg="light" text="dark" id="result">
+            <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center">
+                <Card bg="light" text="dark">
                     <Card.Header><h2>Profile</h2></Card.Header>
                     <Card.Body>
                         <div className="container">
@@ -67,12 +63,20 @@ const Result = ({username}) => {
                                         { githubStarRepos.map(element => { return ( <li key={element.id}><b>{element.stargazers_count}</b> <a target="_blank" rel="noreferrer" href={`https://github.com/${username}/${element.name}`}>{element.name}</a></li>)})}
                                     </ul>
                                 </div>
-                                <Card.Img id="avatar" className="col" src={githubUser.avatar_url} />
+                                <Card.Img id="avatar" className="col border border-2 rounded py-2" src={githubUser.avatar_url} />
                             </div>
                         </div>
-                        <Button href={githubUser.html_url} variant="secondary">Visit profile</Button>
+                        <Button target="_blank" rel="noreferrer" href={githubUser.html_url} variant="secondary">Visit profile</Button>
                     </Card.Body>
                 </Card>
+            </section>
+        )
+    }
+
+    const alert = () => {
+        return(
+            <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center">
+                <div className="alert-warning p-5">No profile found for that username</div>
             </section>
         )
     }
@@ -83,7 +87,7 @@ const Result = ({username}) => {
 
     return (
         <>
-            { userFound === true ? result(githubUser) : null }
+            { userFound === true ? result(githubUser) : alert() }
         </>
     );
 }
