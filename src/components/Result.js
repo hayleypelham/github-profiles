@@ -21,7 +21,7 @@ const Result = ({username}) => {
                         setGithubForkRepos(response.items.slice(0,4));
                     } catch (err) {
                         setUserFound(false);
-                        alert("No user found for that username");
+                        alert(err);
                     }
                 });
                 const repoStarData = await fetch(`https://api.github.com/search/repositories?q=user:${username}&sort=stars&order=desc`);
@@ -30,7 +30,7 @@ const Result = ({username}) => {
                         setGithubStarRepos(response.items.slice(0,4));
                     } catch (err) {
                         setUserFound(false);
-                        alert("No user found for that username");
+                        alert(err);
                     }
                 });
             } else {
@@ -41,6 +41,7 @@ const Result = ({username}) => {
             setUserFound(false);
             alert("No user found for that username");
         }
+        if ({userFound} === false) alert("No user found for that username");
     }
 
     const result = (githubUser) => {
@@ -52,7 +53,7 @@ const Result = ({username}) => {
                         <div className="container">
                             <div className="row">
                                 <div className="col">
-                                    <Card.Title><h3><strong>{username}</strong></h3></Card.Title>
+                                    <Card.Title><h3><strong>{githubUser.login}</strong></h3></Card.Title>
                                     <ul className="mt-3">
                                         <li><b>{githubUser.followers}</b> followers</li>
                                         <li><b>{githubUser.public_repos}</b> public repos</li>
