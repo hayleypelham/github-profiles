@@ -10,41 +10,6 @@ const Result = ({username}) => {
     const [userFound, setUserFound] = useState(false);
     const [reposFound, setReposFound] = useState(false);
 
-    async function getGithubInfo (username) {
-        try {
-            setUserFound(true);
-            setReposFound(true);
-            const data = await fetch(`https://api.github.com/users/${username}`);
-            data.json().then((response) => setGithubInfo(response));
-            if (data.ok) {
-                const repoForkData = await fetch(`https://api.github.com/search/repositories?q=user:${username}&sort=forks&order=desc`);
-                repoForkData.json().then((response) => { 
-                    try {
-                        setGithubForkRepos(response.items.slice(0,4));
-                    } catch (err) {
-                        setReposFound(false);
-                        alert("Something went wrong when fetching user data");
-                    }
-                });
-                const repoStarData = await fetch(`https://api.github.com/search/repositories?q=user:${username}&sort=stars&order=desc`);
-                repoStarData.json().then((response) => { 
-                    try {
-                        setGithubStarRepos(response.items.slice(0,4));
-                    } catch (err) {
-                        setReposFound(false);
-                        alert("Something went wrong when fetching user data");
-                    }
-                });
-            } else {
-                setUserFound(false);
-                alert("No user found for that username");
-            }
-        } catch (err) {
-            setUserFound(false);
-            alert("No user found for that username");
-        }
-    }
-
     const result = (githubInfo) => {
         return (
             <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center pb-5">
@@ -95,8 +60,41 @@ const Result = ({username}) => {
     }
 
     useEffect( () => {
+        async function getGithubInfo (username) {
+            try {
+                setUserFound(true);
+                setReposFound(true);
+                const data = await fetch(`https://api.github.com/users/${username}`);
+                data.json().then((response) => setGithubInfo(response));
+                if (data.ok) {
+                    const repoForkData = await fetch(`https://api.github.com/search/repositories?q=user:${username}&sort=forks&order=desc`);
+                    repoForkData.json().then((response) => { 
+                        try {
+                            setGithubForkRepos(response.items.slice(0,4));
+                        } catch (err) {
+                            setReposFound(false);
+                            alert("Something went wrong when fetching user data");
+                        }
+                    });
+                    const repoStarData = await fetch(`https://api.github.com/search/repositories?q=user:${username}&sort=stars&order=desc`);
+                    repoStarData.json().then((response) => { 
+                        try {
+                            setGithubStarRepos(response.items.slice(0,4));
+                        } catch (err) {
+                            setReposFound(false);
+                            alert("Something went wrong when fetching user data");
+                        }
+                    });
+                } else {
+                    setUserFound(false);
+                    alert("No user found for that username");
+                }
+            } catch (err) {
+                setUserFound(false);
+                alert("No user found for that username");
+            }
+        }
         getGithubInfo(username);
-        // eslint-disable-next-line
       }, [username]);
 
     return (
