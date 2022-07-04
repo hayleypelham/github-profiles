@@ -5,8 +5,24 @@
         list-style: none;
     }
 }
-
+.card  {
+    background-color: black;
+    color: white;
+}
+.card-header {
+    border-bottom: 1px solid grey;
+}
 #avatar {
     max-width: 200px;
     max-height: 200px;
+}
+
+.light-content {
+    .card  {
+        background-color: white;
+        color: #333;
+    }
+    .card-header {
+        border-bottom: none;
+    }
 }

@@ -2,3 +2,20 @@
     width: 580px;
     max-width: 80%;
 }
+#searchForm input, #username {
+    background-color: black;
+    color: white;
+}
+#username {
+    color: white;
+}
+
+.light-content {
+    #searchForm input, #username {
+        background-color: white;
+        color: black;
+    }
+    #username {
+        color: black;
+    }
+}

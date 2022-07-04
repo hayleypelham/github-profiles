@@ -14,7 +14,13 @@ body {
     margin: 0;
     padding: 0;
 }
+.btn-primary {
+    background-color: black;
+}
 
 .light-content {
     background-color: #F6F8FA;
+    .btn-primary {
+        background-color: blue;
+    }
 }

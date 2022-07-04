@@ -49,7 +49,7 @@ const Result = ({username}) => {
     const result = (githubUser) => {
         return (
             <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center pb-5">
-                <Card bg="light" text="dark">
+                <Card className="card">
                     <Card.Header><h2>Profile</h2></Card.Header>
                     <Card.Body>
                         <div className="container">
@@ -72,7 +72,7 @@ const Result = ({username}) => {
                                 <Card.Img id="avatar" className="col border border-2 rounded py-2" src={githubUser.avatar_url} />
                             </div>
                         </div>
-                        <Button target="_blank" rel="noreferrer" href={githubUser.html_url} variant="secondary">Visit profile</Button>
+                        <Button target="_blank" rel="noreferrer" href={githubUser.html_url} variant="primary">Visit profile</Button>
                     </Card.Body>
                 </Card>
             </section>
