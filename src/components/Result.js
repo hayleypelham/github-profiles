@@ -97,6 +97,7 @@ const Result = ({username}) => {
 
     useEffect( () => {
         getGithubUser(username);
+        // eslint-disable-next-line
       }, [username]);
 
     return (
