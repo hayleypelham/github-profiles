@@ -24,8 +24,7 @@ const Header = () => {
                         changeTheme(darkMode ? themes.light : themes.dark);
                         }}
                     >
-                        <i className={darkMode ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}></i>
-                        <span className="">Switch mode</span>
+                        <span className="">Switch mode</span><span> {darkMode ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}</span>
                     </Button>
                     )}
                 </ThemeContext.Consumer>

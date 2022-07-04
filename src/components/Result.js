@@ -4,18 +4,18 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 const Result = ({username}) => {
-    const [githubUser, setGithubUser] = useState({});
+    const [githubInfo, setGithubInfo] = useState({});
     const [githubForkRepos, setGithubForkRepos] = useState([]);
     const [githubStarRepos, setGithubStarRepos] = useState([]);
     const [userFound, setUserFound] = useState(false);
     const [reposFound, setReposFound] = useState(false);
 
-    async function getGithubUser (username) {
+    async function getGithubInfo (username) {
         try {
             setUserFound(true);
             setReposFound(true);
             const data = await fetch(`https://api.github.com/users/${username}`);
-            data.json().then((response) => setGithubUser(response));
+            data.json().then((response) => setGithubInfo(response));
             if (data.ok) {
                 const repoForkData = await fetch(`https://api.github.com/search/repositories?q=user:${username}&sort=forks&order=desc`);
                 repoForkData.json().then((response) => { 
@@ -43,10 +43,9 @@ const Result = ({username}) => {
             setUserFound(false);
             alert("No user found for that username");
         }
-        //if ({userFound} === false) alert("No user found for that username");
     }
 
-    const result = (githubUser) => {
+    const result = (githubInfo) => {
         return (
             <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center pb-5">
                 <Card className="card">
@@ -55,10 +54,10 @@ const Result = ({username}) => {
                         <div className="container">
                             <div className="row">
                                 <div className="col">
-                                    <Card.Title><h3><strong>{githubUser.login}</strong></h3></Card.Title>
+                                    <Card.Title><h3><strong>{githubInfo.login}</strong></h3></Card.Title>
                                     <ul className="mt-3">
-                                        <li><b>{githubUser.followers}</b> followers</li>
-                                        <li><b>{githubUser.public_repos}</b> public repos</li>
+                                        <li><b>{githubInfo.followers}</b> followers</li>
+                                        <li><b>{githubInfo.public_repos}</b> public repos</li>
                                     </ul>
                                     <h4>Most forked repos</h4>
                                     <ul>
@@ -69,10 +68,10 @@ const Result = ({username}) => {
                                         { githubStarRepos.map(element => { return ( <li key={element.id}><b>{element.stargazers_count}</b> <a target="_blank" rel="noreferrer" href={`https://github.com/${username}/${element.name}`}>{element.name}</a></li>)})}
                                     </ul>
                                 </div>
-                                <Card.Img id="avatar" className="col border border-2 rounded py-2" src={githubUser.avatar_url} />
+                                <Card.Img id="avatar" className="col border border-2 rounded py-2" src={githubInfo.avatar_url} />
                             </div>
                         </div>
-                        <Button target="_blank" rel="noreferrer" href={githubUser.html_url} variant="primary">Visit profile</Button>
+                        <Button target="_blank" rel="noreferrer" href={githubInfo.html_url} variant="primary">Visit profile</Button>
                     </Card.Body>
                 </Card>
             </section>
@@ -96,13 +95,13 @@ const Result = ({username}) => {
     }
 
     useEffect( () => {
-        getGithubUser(username);
+        getGithubInfo(username);
         // eslint-disable-next-line
       }, [username]);
 
     return (
         <>
-            { userFound === true && reposFound === true ? result(githubUser) : alert(userFound, reposFound) }
+            { userFound === true && reposFound === true ? result(githubInfo) : alert(userFound, reposFound) }
         </>
     );
 }
