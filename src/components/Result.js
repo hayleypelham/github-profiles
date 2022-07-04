@@ -8,10 +8,12 @@ const Result = ({username}) => {
     const [githubForkRepos, setGithubForkRepos] = useState([]);
     const [githubStarRepos, setGithubStarRepos] = useState([]);
     const [userFound, setUserFound] = useState(false);
+    const [reposFound, setReposFound] = useState(false);
 
     async function getGithubUser (username) {
         try {
             setUserFound(true);
+            setReposFound(true);
             const data = await fetch(`https://api.github.com/users/${username}`);
             data.json().then((response) => setGithubUser(response));
             if (data.ok) {
@@ -20,6 +22,7 @@ const Result = ({username}) => {
                     try {
                         setGithubForkRepos(response.items.slice(0,4));
                     } catch (err) {
+                        setReposFound(false);
                         alert("Something went wrong when fetching user data");
                     }
                 });
@@ -28,16 +31,19 @@ const Result = ({username}) => {
                     try {
                         setGithubStarRepos(response.items.slice(0,4));
                     } catch (err) {
+                        setReposFound(false);
                         alert("Something went wrong when fetching user data");
                     }
                 });
             } else {
                 setUserFound(false);
+                alert("No user found for that username");
             }
         } catch (err) {
             setUserFound(false);
+            alert("No user found for that username");
         }
-        if ({userFound} === false) alert("No user found for that username");
+        //if ({userFound} === false) alert("No user found for that username");
     }
 
     const result = (githubUser) => {
@@ -73,12 +79,20 @@ const Result = ({username}) => {
         )
     }
 
-    const alert = () => {
-        return(
-            <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center">
-                <div className="alert-warning p-5">No profile found for that username</div>
-            </section>
-        )
+    const alert = (userFound, reposFound) => {
+        if (userFound === true && reposFound === false) {
+            return(
+                <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center">
+                    <div className="alert-warning p-5">Something went wrong fetching repos for that user</div>
+                </section>
+            )
+        } else if (userFound === false ) {
+            return(
+                <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center">
+                    <div className="alert-warning p-5">No profile found for that username</div>
+                </section>
+            )
+        }
     }
 
     useEffect( () => {
@@ -87,7 +101,7 @@ const Result = ({username}) => {
 
     return (
         <>
-            { userFound === true ? result(githubUser) : alert() }
+            { userFound === true && reposFound === true ? result(githubUser) : alert(userFound, reposFound) }
         </>
     );
 }
