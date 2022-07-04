@@ -8,6 +8,8 @@
 @import "./search.scss";
 @import "./result.scss";
 
+// Dark mode
+
 body {
     font-family: "Lato", sans-serif;
     background-color: #161B22;
@@ -17,6 +19,8 @@ body {
 .btn-primary {
     background-color: black;
 }
+
+// Light mode
 
 .light-content {
     background-color: #F6F8FA;
