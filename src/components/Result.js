@@ -48,7 +48,7 @@ const Result = ({username}) => {
 
     const result = (githubUser) => {
         return (
-            <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center">
+            <section id="resultsSection" className="m-auto mt-4 d-flex align-items-center justify-content-center pb-5">
                 <Card bg="light" text="dark">
                     <Card.Header><h2>Profile</h2></Card.Header>
                     <Card.Body>
