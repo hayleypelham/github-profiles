@@ -13,5 +13,5 @@ It displays the username, avatar, followers count, and public repositories count
 -   [x] User should get an alert if the username is not valid
 
 ## Bonus features
--  [ ] User can toggle dark/light mode
+-  [x] User can toggle dark/light mode
 -  [ ] Selected mode should persist when user comes back to the app again
